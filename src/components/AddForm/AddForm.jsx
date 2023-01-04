@@ -1,12 +1,10 @@
-import React from 'react';
+import {useState} from 'react';
 import style from './AddForm.module.css';
 import PropTypes from 'prop-types';
 
-class ContactForm extends React.Component {
-  state = {
-    name: '',
-    number: '',
-  };
+export default function ContactForm () {
+const[name,setName]=useState('')
+const[number,setNumber]=useState('')
 
   handleSubmit = event => {
     event.preventDefault();
@@ -21,14 +19,20 @@ class ContactForm extends React.Component {
     });
   };
 
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value,
-    });
+  handleChange = event => {
+    const {user,value}=event.target
+switch (user) {
+  case 'name':
+    setName(value)
+    break;
+    case 'number':
+    setNumber(value)
+    break;
+  default:
+    return;
+}
   };
 
-  render() {
-    const { name, number } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className={style.containerInput}>
@@ -38,7 +42,7 @@ class ContactForm extends React.Component {
               className={style.formInput}
               value={name}
               type="text"
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -55,7 +59,7 @@ class ContactForm extends React.Component {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               value={number}
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -65,11 +69,9 @@ class ContactForm extends React.Component {
       </form>
     );
   }
-}
 
 ContactForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 
-export default ContactForm;
