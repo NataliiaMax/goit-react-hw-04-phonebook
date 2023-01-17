@@ -2,21 +2,22 @@ import { useState } from 'react';
 import style from './AddForm.module.css';
 import PropTypes from 'prop-types';
 
-export default function ContactForm() {
+export default function ContactForm(addUser) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     addUser(name, number);
-    this.reset();
+    resetForm();
   };
 
-  reset = () => {
-    setName, setNumber;
+  const resetForm = () => {
+    setName('');
+    setNumber('');
   };
 
-  handleChange = event => {
+  const handleChange = event => {
     const { user, value } = event.target;
     switch (user) {
       case 'name':
@@ -31,7 +32,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={this.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className={style.containerInput}>
         <label className={style.formLabel}>
           Name
@@ -68,6 +69,5 @@ export default function ContactForm() {
 }
 
 ContactForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  addUser: PropTypes.func.isRequired,
 };

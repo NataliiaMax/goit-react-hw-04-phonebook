@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import style from './ContactUser.module.css';
 
-const ContactUser = ({ name, number, userId, deleteUser }) => {
+export default function ContactUser({ name, number, userId, deleteUser }) {
   return (
     <li key={userId} className={style.itemUser}>
       <p className={style.itemText}>{name}: </p>
@@ -11,7 +11,7 @@ const ContactUser = ({ name, number, userId, deleteUser }) => {
       </button>
     </li>
   );
-};
+}
 
 ContactUser.propTypes = {
   name: PropTypes.string.isRequired,
@@ -19,5 +19,3 @@ ContactUser.propTypes = {
   userId: PropTypes.string.isRequired,
   deleteUser: PropTypes.func.isRequired,
 };
-
-export default ContactUser;
