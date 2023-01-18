@@ -5,7 +5,7 @@ import ContactUser from '../ContactUser/ContactUser';
 export default function ContactList({ contacts, deleteUser }) {
   return (
     <ul className={style.listUsers}>
-      {contacts.map(({id, name, number}) => {
+      {contacts.map(({ id, name, number }) => {
         return (
           <ContactUser
             deleteUser={deleteUser}
@@ -22,10 +22,10 @@ export default function ContactList({ contacts, deleteUser }) {
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
-       PropTypes.shape({
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
     })
   ),
   deleteUser: PropTypes.func.isRequired,

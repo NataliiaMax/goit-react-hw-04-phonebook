@@ -2,13 +2,13 @@ import { useState } from 'react';
 import style from './AddForm.module.css';
 import PropTypes from 'prop-types';
 
-export default function ContactForm(addUser) {
+export default function ContactForm({ addUser }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
-    addUser(name, number);
+    addUser({ name, number });
     resetForm();
   };
 
@@ -18,8 +18,8 @@ export default function ContactForm(addUser) {
   };
 
   const handleChange = event => {
-    const { user, value } = event.target;
-    switch (user) {
+    const { name, value } = event.target;
+    switch (name) {
       case 'name':
         setName(value);
         break;
@@ -69,5 +69,5 @@ export default function ContactForm(addUser) {
 }
 
 ContactForm.propTypes = {
-  addUser: PropTypes.func.isRequired,
+  addUser: PropTypes.func.isRequired
 };

@@ -5,7 +5,7 @@ export default function ContactUser({ name, number, userId, deleteUser }) {
   return (
     <li key={userId} className={style.itemUser}>
       <p className={style.itemText}>{name}: </p>
-      <p className={style.itemText}>{number}</p>
+      <p className={style.itemText}>{number}</p>{' '}
       <button className={style.buttonDelete} onClick={() => deleteUser(userId)}>
         Delete
       </button>
